@@ -15,6 +15,7 @@ def create_app():
     # Use variáveis de ambiente para segurança
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-here')
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Configurações de produção
     if not app.debug:
