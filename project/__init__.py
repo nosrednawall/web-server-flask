@@ -9,18 +9,8 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-#    app.config['SECRET_KEY'] = 'secret-key-goes-here'
-#    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-
-    # Use variáveis de ambiente para segurança
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-here')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    # Configurações de produção
-    if not app.debug:
-        app.config['SESSION_COOKIE_SECURE'] = True
-        app.config['SESSION_COOKIE_HTTPONLY'] = True
+    app.config['SECRET_KEY'] = 'secret-key-goes-here'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
     db.init_app(app)
 
