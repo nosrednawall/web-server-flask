@@ -1,11 +1,6 @@
 import os
-# __init__.py (ou onde está create_app())
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-
-db = SQLAlchemy()
-login_manager = LoginManager()
+from .extensions import db, login_manager
 
 def create_app():
     app = Flask(__name__)
@@ -30,9 +25,5 @@ def create_app():
     # Blueprint principal
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
-
-    # NOVO: Blueprint da Grid NF-e
-    from .grid_nfe import grid_nfe_bp
-    app.register_blueprint(grid_nfe_bp, url_prefix='/nfe')
-
+    
     return app
